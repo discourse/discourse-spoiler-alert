@@ -9,6 +9,8 @@
 
     Discourse.PostView.prototype.on("postViewInserted", applySpoilers);
     Discourse.ComposerView.prototype.on("previewRefreshed", applySpoilers);
+
+    applySpoilers();
   });
 
 })();
