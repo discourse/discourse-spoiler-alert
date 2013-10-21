@@ -4,5 +4,4 @@
 # authors: Robin Ward, Regis Hanol
 
 register_asset "javascripts/spoiler_alert_main.js"
-register_asset "javascripts/spoiler.min.js"
-
+register_asset "javascripts/spoiler.js"
