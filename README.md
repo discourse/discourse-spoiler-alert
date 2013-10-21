@@ -1,8 +1,7 @@
 discourse-spoiler-alert
 =======================
 
-This plugin for [Discourse](http://discourse.org) hides spoilers by using
-the [spoiler-alert](http://joshbuddy.github.io/spoiler-alert/) jQuery plugin.
+Spoiler plugin for [Discourse](http://discourse.org) highly inspired by the [spoiler-alert](http://joshbuddy.github.io/spoiler-alert/) jQuery plugin.
 
 Usage
 =====
