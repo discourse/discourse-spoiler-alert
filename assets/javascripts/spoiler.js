@@ -61,6 +61,7 @@
         $spoiler.data("spoiler-state", "blurred").css("cursor", "pointer");
         applyBlur($spoiler, partialBlur);
       }
+      e.preventDefault();
     });
 
   };
