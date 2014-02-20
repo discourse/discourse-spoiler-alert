@@ -19,6 +19,7 @@
 
       Discourse.PostView.prototype.on("postViewInserted", applySpoilers);
       Discourse.ComposerView.prototype.on("previewRefreshed", applySpoilers);
+      Discourse.UserStreamView.prototype.on("didInsertElement", applySpoilers);
     });
 
   });
