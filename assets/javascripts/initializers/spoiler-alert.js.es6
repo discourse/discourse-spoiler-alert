@@ -1,7 +1,9 @@
-(function() {
-
-  Discourse.addInitializer(function () {
-
+/**
+  Apply our spoilers when the app boots
+**/
+export default {
+  name: "apply-spoilers",
+  initialize: function() {
     var applySpoilers = function($post) {
       // text
       $('.spoiler:not(:has(img))', $post).removeClass('spoiler')
@@ -23,6 +25,5 @@
       Discourse.EmbeddedPostView.prototype.on("didInsertElement", applySpoilers);
     });
 
-  });
-
-})();
+  }
+};
