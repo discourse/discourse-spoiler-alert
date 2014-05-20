@@ -4,26 +4,34 @@
 export default {
   name: "apply-spoilers",
   initialize: function() {
-    var applySpoilers = function($post) {
+    var applySpoilers = function($elem) {
       // text
-      $('.spoiler:not(:has(img))', $post).removeClass('spoiler')
+      $('.spoiler:not(:has(img))', $elem).removeClass('spoiler')
                                          .addClass('spoiled')
                                          .spoilText();
       // images
-      $('.spoiler:has(img)', $post).removeClass('spoiler')
+      $('.spoiler:has(img)', $elem).removeClass('spoiler')
                                    .addClass('spoiled')
                                    .wrap("<div style='display: inline-block; overflow: hidden;'></div>")
                                    .spoilImage();
     };
 
-    Em.run.next(function() {
+    // Run it once the page loads for good measure.
+    Em.run('afterRender', function() {
       applySpoilers();
-
-      Discourse.PostView.prototype.on("postViewInserted", applySpoilers);
-      Discourse.ComposerView.prototype.on("previewRefreshed", applySpoilers);
-      Discourse.UserStreamView.prototype.on("didInsertElement", applySpoilers);
-      Discourse.EmbeddedPostView.prototype.on("didInsertElement", applySpoilers);
     });
 
+    var decorate = function(klass, evt) {
+      klass.reopen({
+        _applySpoilers: function($elem) {
+          applySpoilers($elem);
+        }.on(evt)
+      });
+    };
+
+    decorate(Discourse.PostView, 'postViewInserted');
+    decorate(Discourse.ComposerView, 'previewRefreshed');
+    decorate(Discourse.UserStreamView, 'didInsertElement');
+    decorate(Discourse.EmbeddedPostView, 'didInsertElement');
   }
 };
