@@ -6,8 +6,8 @@ Spoiler plugin for [Discourse](http://discourse.org) highly inspired by the [spo
 Usage
 =====
 
-In your posts, surround text or images with `[spoiler]` ... `[/spoiler]`. 
-For example: 
+In your posts, surround text or images with `[spoiler]` ... `[/spoiler]`.
+For example:
 
 ```
    I watched the murder mystery on TV last night. [spoiler]The butler did it[/spoiler].
@@ -16,10 +16,26 @@ For example:
 Installation
 ============
 
-* Check out the project from github
-* Copy the `discourse-spoiler-alert` folder to your `plugins` directory inside Discourse.
-* In development mode, run `rake assets:clean`
-* In production, recompile your assets: `rake assets:precompile`
+* Add the plugin's repo url to your container's `app.yml` file
+
+```yml
+hooks:
+  after_code:
+    - exec:
+        cd: $home/plugins
+        cmd:
+          - mkdir -p plugins
+          - git clone https://github.com/discourse/docker_manager.git
+          - git clone https://github.com/discourse/discourse-spoiler-alert.git
+```
+
+* Rebuild the container
+
+```
+cd /var/docker
+git pull
+./launcher rebuild app
+```
 
 License
 =======
