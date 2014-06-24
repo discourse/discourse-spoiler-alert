@@ -3,7 +3,7 @@
 **/
 export default {
   name: "apply-spoilers",
-  initialize: function() {
+  initialize: function(container) {
     var applySpoilers = function($elem) {
       // text
       $('.spoiler:not(:has(img))', $elem).removeClass('spoiler')
@@ -30,8 +30,8 @@ export default {
     };
 
     decorate(Discourse.PostView, 'postViewInserted');
-    decorate(Discourse.ComposerView, 'previewRefreshed');
+    decorate(container.lookupFactory('view:composer'), 'previewRefreshed');
+    decorate(container.lookupFactory('view:embedded-post'), 'previewRefreshed');
     decorate(Discourse.UserStreamView, 'didInsertElement');
-    decorate(Discourse.EmbeddedPostView, 'didInsertElement');
   }
 };
