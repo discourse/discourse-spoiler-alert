@@ -32,6 +32,6 @@ export default {
     decorate(Discourse.PostView, 'postViewInserted');
     decorate(container.lookupFactory('view:composer'), 'previewRefreshed');
     decorate(container.lookupFactory('view:embedded-post'), 'previewRefreshed');
-    decorate(Discourse.UserStreamView, 'didInsertElement');
+    decorate(container.lookupFactory('view:user-stream'), 'didInsertElement');
   }
 };
