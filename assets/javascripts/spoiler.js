@@ -1,7 +1,12 @@
 (function($) {
 
   var isIE = /*@cc_on!@*/false || document.documentMode,
-      globalIdCounter = 0;
+      globalIdCounter = 0,
+      DEFAULTS = {
+        max: {text: 10, image: 20},
+        partial: {text:5, image: 6}
+      };
+
 
   var blurText = function($spoiler, radius) {
     var textShadow = "gray 0 0 " + radius + "px";
@@ -15,9 +20,10 @@
   var blurImage = function($spoiler, radius) {
     // on the first pass, transform images into SVG
     $("img", $spoiler).each(function(index, image) {
+      var isEmoji = $(this).hasClass('emoji');
       var transform = function() {
-        var w = image.width,
-            h = image.height,
+        var w = isEmoji ? 20 : image.width,
+            h = isEmoji ? 20 : image.height,
             id = ++globalIdCounter;
         var svg = "<svg data-spoiler-id='" + id + "' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' width='" + w + "' height='" + h + "'>" +
                   "<defs><filter id='blur-" + id + "'><feGaussianBlur id='gaussian-" + id + "' stdDeviation='" + radius + "'></feGaussianBlur></filter></defs>" +
@@ -40,9 +46,15 @@
     });
   };
 
-  var applySpoilers = function($spoiler, options, applyBlur) {
+  var applyBlur = function($spoiler, option) {
+    blurText($spoiler, option.text);
+    blurImage($spoiler, option.image);
+  };
+
+  var applySpoilers = function($spoiler, options) {
     var maxBlur = options.max,
-        partialBlur = options.partial;
+        partialBlur = options.partial,
+        noBlur = {text: 0, image: 0};
 
     $spoiler.data("spoiler-state", "blurred");
 
@@ -56,7 +68,7 @@
     }).on("click", function(e) {
       if ($spoiler.data("spoiler-state") === "blurred") {
         $spoiler.data("spoiler-state", "revealed").css("cursor", "auto");
-        applyBlur($spoiler, 0);
+        applyBlur($spoiler, noBlur);
       } else {
         $spoiler.data("spoiler-state", "blurred").css("cursor", "pointer");
         applyBlur($spoiler, partialBlur);
@@ -66,21 +78,10 @@
 
   };
 
-  $.fn.spoilText = function(options) {
-    var defaults = { max: 10, partial: 5 },
-        opts = $.extend(defaults, options || {});
-
-    return this.each(function() {
-      applySpoilers($(this), opts, blurText);
-    });
-  };
-
-  $.fn.spoilImage = function(options) {
-    var defaults = { max: 20, partial: 6 },
-        opts = $.extend(defaults, options || {});
-
-    return this.each(function() {
-      applySpoilers($(this), opts, blurImage);
+  $.fn.spoil = function(options) {
+    var opts = $.extend(DEFAULTS, options || {});
+    return this.each(function () {
+      applySpoilers($(this), opts);
     });
   };
 
