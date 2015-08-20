@@ -5,3 +5,4 @@
 # url: https://github.com/discourse/discourse-spoiler-alert
 
 register_asset "javascripts/spoiler.js"
+register_asset "stylesheets/discourse_spoiler_alert.css"
