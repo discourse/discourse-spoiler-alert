@@ -15,8 +15,10 @@ after_initialize do
 
   # black out spoilers in emails
   Email::Styles.register_plugin_style do |fragment|
-    fragment.css(".spoiler").each do |spoiler|
-      spoiler["style"] = "color:\#000;background-color:\#000;"
+    if SiteSetting.spoiler_enabled
+      fragment.css(".spoiler").each do |spoiler|
+        spoiler["style"] = "color:\#000;background-color:\#000;"
+      end
     end
   end
 
