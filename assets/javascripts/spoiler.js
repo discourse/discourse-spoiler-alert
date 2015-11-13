@@ -3,21 +3,34 @@
   var isIE = /*@cc_on!@*/false || document.documentMode,
       globalIdCounter = 0,
       DEFAULTS = {
-        max: {text: 10, image: 20},
-        partial: {text:5, image: 6}
+        max: { text: 10, link: 10, image: 20 },
+        partial: { text: 5, link: 5, image: 6},
+        none: { text: 0, link: 0, image: 0}
       };
 
 
-  var blurText = function($spoiler, radius) {
-    var textShadow = "gray 0 0 " + radius + "px";
-    if (isIE) { textShadow = radius <= 0 ? "0 0 0 0 gray" : "0 0 " + radius + "px .1px gray"; }
+  function blurText($spoiler, radius) {
+    var textShadow = "black 0 0 " + radius + "px";
+    if (isIE) { textShadow = radius <= 0 ? "0 0 0 0 black" : "0 0 " + radius + "px .1px black"; }
 
     $spoiler.css("background-color", "transparent")
-            .css("color", "rgba(0, 0, 0, 0)")
+            .css("color", "rgba(0,0,0,0)")
             .css("text-shadow", textShadow);
   };
 
-  var blurImage = function($spoiler, radius) {
+  function blurLink($spoiler, radius) {
+    $("a", $spoiler).each(function(index, link) {
+      var value = radius > 0 ? "blur(" + radius + "px)" : "";
+      if (isIE) {
+        $(link).css("-ms-filter", "progid:DXImageTransform.Microsoft.Blur(pixelradius="+radius+")");
+      } else {
+        $(link).css("filter", value)
+               .css("-webkit-filter", value);
+      }
+    });
+  };
+
+  function blurImage($spoiler, radius) {
     // on the first pass, transform images into SVG
     $("img", $spoiler).each(function(index, image) {
       var isEmoji = $(this).hasClass('emoji');
@@ -48,13 +61,14 @@
 
   var applyBlur = function($spoiler, option) {
     blurText($spoiler, option.text);
+    blurLink($spoiler, option.link);
     blurImage($spoiler, option.image);
   };
 
   var applySpoilers = function($spoiler, options) {
     var maxBlur = options.max,
         partialBlur = options.partial,
-        noBlur = {text: 0, image: 0};
+        noBlur = options.none;
 
     $spoiler.data("spoiler-state", "blurred");
 

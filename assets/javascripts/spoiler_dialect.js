@@ -1,6 +1,6 @@
 (function() {
 
-  var CONTAINS_BLOCK_REGEX = /\n|<img|!\[[^\]]*\]\(/;
+  var CONTAINS_BLOCK_REGEX = /\n|<img|!\[[^\]]*\][(\[]/;
 
   function insertSpoiler(_, spoiler) {
     var element = CONTAINS_BLOCK_REGEX.test(spoiler) ? "div" : "span";
