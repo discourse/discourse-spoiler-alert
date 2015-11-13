@@ -1,13 +1,15 @@
 (function() {
 
+  var CONTAINS_BLOCK_REGEX = /\n|<img|!\[[^\]]*\]\(/;
+
+  function insertSpoiler(_, spoiler) {
+    var element = CONTAINS_BLOCK_REGEX.test(spoiler) ? "div" : "span";
+    return "<" + element + " class='spoiler'>" + spoiler + "</" + element + ">";
+  }
+
   function replaceSpoilers(text) {
     text = text || "";
-
-    while (text != (text = text.replace(/\[spoiler\]((?:(?!\[spoiler\]|\[\/spoiler\])[\S\s])*)\[\/spoiler\]/ig, function (_, spoiler) {
-      var element = spoiler.indexOf("\n") >= 0 ? "div" : "span";
-      return "<" + element + " class='spoiler'>" + spoiler + "</" + element + ">";
-    })));
-
+    while (text !== (text = text.replace(/\[spoiler\]((?:(?!\[spoiler\]|\[\/spoiler\])[\S\s])*)\[\/spoiler\]/ig, insertSpoiler)));
     return text;
   }
 
