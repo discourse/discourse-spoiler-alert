@@ -10,6 +10,7 @@
 
 
   function blurText($spoiler, radius) {
+    // spoiler text is gray so as to maintain plugin compatibility with both light and dark theme sites.
     var textShadow = "gray 0 0 " + radius + "px";
     if (isIE) { textShadow = radius <= 0 ? "0 0 0 0 gray" : "0 0 " + radius + "px .1px gray"; }
 
