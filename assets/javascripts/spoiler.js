@@ -10,8 +10,8 @@
 
 
   function blurText($spoiler, radius) {
-    var textShadow = "black 0 0 " + radius + "px";
-    if (isIE) { textShadow = radius <= 0 ? "0 0 0 0 black" : "0 0 " + radius + "px .1px black"; }
+    var textShadow = "gray 0 0 " + radius + "px";
+    if (isIE) { textShadow = radius <= 0 ? "0 0 0 0 gray" : "0 0 " + radius + "px .1px gray"; }
 
     $spoiler.css("background-color", "transparent")
             .css("color", "rgba(0,0,0,0)")
