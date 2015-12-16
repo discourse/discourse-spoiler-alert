@@ -41,7 +41,7 @@
             id = ++globalIdCounter;
         var svg = "<svg data-spoiler-id='" + id + "' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' width='" + w + "' height='" + h + "'>" +
                   "<defs><filter id='blur-" + id + "'><feGaussianBlur id='gaussian-" + id + "' stdDeviation='" + radius + "'></feGaussianBlur></filter></defs>" +
-                  "<image xlink:href='" + image.src + "' filter='url(#blur-" + id + ")' width='" + w + "' height='" + h + "'></image>" +
+                  "<image xlink:href='" + image.src + "' style='filter: url(#blur-" + id + ")' width='" + w + "' height='" + h + "'></image>" +
                   "</svg>";
         $(image).replaceWith(svg);
       };
