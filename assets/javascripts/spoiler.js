@@ -8,6 +8,12 @@
         none: { text: 0, link: 0, image: 0}
       };
 
+  // handle lazyYT onebox
+  function blurLazyYT($spoiler) {
+    $("div.lazyYT", $spoiler).each(function(index) {
+      $(this).replaceWith("<p>https://youtube.com/watch?v=" + $(this).data('youtube-id') + "</p>");
+    });
+  };
 
   function blurText($spoiler, radius) {
     // spoiler text is gray so as to maintain plugin compatibility with both light and dark theme sites.
@@ -61,6 +67,7 @@
   };
 
   var applyBlur = function($spoiler, option) {
+    blurLazyYT($spoiler);
     blurText($spoiler, option.text);
     blurLink($spoiler, option.link);
     blurImage($spoiler, option.image);
