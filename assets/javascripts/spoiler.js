@@ -62,7 +62,8 @@
     // change the blur radius
     $("svg", $spoiler).each(function(index, svg) {
       var id = svg.getAttribute("data-spoiler-id");
-      svg.getElementById("gaussian-" + id).setAttribute("stdDeviation", radius);
+      var element = svg.getElementById("gaussian-" + id);
+      if (element) { element.setAttribute("stdDeviation", radius); }
     });
   };
 
