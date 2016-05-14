@@ -1,3 +1,3 @@
 pt:
   site_settings:
-    spoiler_enabled: "Activar o plugin \"spoiler\". Se alterar, ter· de fazer \"rebake\" de todos os tÛpicos com \"rake posts:rebake\"."
+    spoiler_enabled: "Activar o plugin \"spoiler\". Se alterar, ter√° de fazer \"rebake\" de todos os t√≥picos com \"rake posts:rebake\"."
