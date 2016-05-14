@@ -1,0 +1,3 @@
+pt:
+  site_settings:
+    spoiler_enabled: "Activar o plugin \"spoiler\". Se alterar, terá de fazer \"rebake\" de todos os tópicos com \"rake posts:rebake\"."
