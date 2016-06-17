@@ -1,0 +1,6 @@
+en:
+  js:
+    spoiler:
+      title: Insert Spoiler
+    composer:
+      spoiler_text: "This text will be blurred"

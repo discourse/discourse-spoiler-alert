@@ -10,7 +10,7 @@
 
   // handle lazyYT onebox
   function blurLazyYT($spoiler) {
-    $("div.lazyYT", $spoiler).each(function(index) {
+    $("div.lazyYT", $spoiler).each(function() {
       $(this).replaceWith("<p>https://youtube.com/watch?v=" + $(this).data('youtube-id') + "</p>");
     });
   };
