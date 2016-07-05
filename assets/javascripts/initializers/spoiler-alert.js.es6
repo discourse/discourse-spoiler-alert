@@ -1,4 +1,5 @@
 import { withPluginApi, decorateCooked } from 'discourse/lib/plugin-api';
+import ComposerController from 'discourse/controllers/composer';
 
 function spoil($elem) {
   $('.spoiler', $elem).removeClass('spoiler').addClass('spoiled').spoil();
@@ -14,8 +15,6 @@ function initializeSpoiler(api) {
       label: 'spoiler.title'
     };
   });
-
-  const ComposerController = api.container.lookup("controller:composer");
 
   ComposerController.reopen({
     actions: {
