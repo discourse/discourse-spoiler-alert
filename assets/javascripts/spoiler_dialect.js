@@ -1,4 +1,6 @@
 (function() {
+  // Don't bother with this code if the new dialect system is present
+  if (Discourse.dialect_deprecated) { return; }
 
   var CONTAINS_BLOCK_REGEX = /\n|<img|!\[[^\]]*\][(\[]/;
 
