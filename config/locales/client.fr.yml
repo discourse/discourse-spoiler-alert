@@ -1,0 +1,6 @@
+fr:
+  js:
+    spoiler:
+      title: Flouter le texte
+    composer:
+      spoiler_text: "Ce texte sera flouté"
