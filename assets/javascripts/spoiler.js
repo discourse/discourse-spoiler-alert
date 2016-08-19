@@ -1,6 +1,7 @@
 (function($) {
 
   var isIE = /*@cc_on!@*/false || document.documentMode,
+      isFirefox = false || navigator.userAgent.indexOf("Firefox") > 0,
       globalIdCounter = 0,
       DEFAULTS = {
         max: { text: 10, link: 10, image: 20 },
@@ -17,12 +18,21 @@
 
   function blurText($spoiler, radius) {
     // spoiler text is gray so as to maintain plugin compatibility with both light and dark theme sites.
-    var textShadow = "gray 0 0 " + radius + "px";
-    if (isIE) { textShadow = radius <= 0 ? "0 0 0 0 gray" : "0 0 " + radius + "px .1px gray"; }
+    var textShadow = "gray 0 0 " + radius + "px",
+        userSelect = "-webkit-user-select";
+        
+    if (isIE) {
+      textShadow = radius <= 0 ? "0 0 0 0 gray" : "0 0 " + radius + "px .1px gray";
+      userSelect = "-ms-user-select";
+    }
+    if (isFirefox) {
+      userSelect = "-moz-user-select";
+    }
 
     $spoiler.css("background-color", "transparent")
             .css("color", "rgba(0,0,0,0)")
-            .css("text-shadow", textShadow);
+            .css("text-shadow", textShadow)
+            .css(userSelect, "none");
   };
 
   function blurLink($spoiler, radius) {
