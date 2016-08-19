@@ -1,0 +1,3 @@
+vi:
+  site_settings:
+    spoiler_enabled: "Bật spoiler plugin. Nếu bạn thay đổi điều này, bạn cần phải rebake toàn bộ bài viết bằng câu lệnh: \"rake posts:rebake\"."
