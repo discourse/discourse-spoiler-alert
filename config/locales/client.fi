@@ -1,0 +1,6 @@
+fi:
+  js:
+    spoiler:
+      title: "Spoileri"
+    composer:
+      spoiler_text: "Tämä teksti sumennetaan."
