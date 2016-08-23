@@ -1,7 +1,7 @@
 (function($) {
 
   var isIE = /*@cc_on!@*/false || document.documentMode,
-      isFirefox = false || navigator.userAgent.indexOf("Firefox") > 0,
+      isFirefox = typeof InstallTrigger !== 'undefined',
       globalIdCounter = 0,
       DEFAULTS = {
         max: { text: 10, link: 10, image: 20 },
