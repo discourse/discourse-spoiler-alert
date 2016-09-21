@@ -20,7 +20,7 @@
     // spoiler text is gray so as to maintain plugin compatibility with both light and dark theme sites.
     var textShadow = "gray 0 0 " + radius + "px",
         userSelect = "-webkit-user-select";
-        
+
     if (isIE) {
       textShadow = radius <= 0 ? "0 0 0 0 gray" : "0 0 " + radius + "px .1px gray";
       userSelect = "-ms-user-select";
@@ -35,8 +35,8 @@
             .css(userSelect, "none");
   };
 
-  function blurLink($spoiler, radius) {
-    $("a", $spoiler).each(function(index, link) {
+  function blurLinkAndPre($spoiler, radius) {
+    $("a,pre", $spoiler).each(function(index, link) {
       var value = radius > 0 ? "blur(" + radius + "px)" : "";
       if (isIE) {
         $(link).css("-ms-filter", "progid:DXImageTransform.Microsoft.Blur(pixelradius="+radius+")");
@@ -80,7 +80,7 @@
   var applyBlur = function($spoiler, option) {
     blurLazyYT($spoiler);
     blurText($spoiler, option.text);
-    blurLink($spoiler, option.link);
+    blurLinkAndPre($spoiler, option.link);
     blurImage($spoiler, option.image);
   };
 
