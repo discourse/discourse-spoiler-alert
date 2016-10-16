@@ -1,0 +1,6 @@
+it:
+  js:
+    spoiler:
+      title: Sfoca Spoiler
+    composer:
+      spoiler_text: "Questo testo verrà sfocato"
