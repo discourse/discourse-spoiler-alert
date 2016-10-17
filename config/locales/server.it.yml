@@ -1,0 +1,3 @@
+it:
+  site_settings:
+    spoiler_enabled: "Abilitare il plugin spoiler. Se modifichi questa opzione devi aggiornare tutti i messaggi con: \"rake posts:rebake\"."
