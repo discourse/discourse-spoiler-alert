@@ -19,7 +19,12 @@ function initializeSpoiler(api) {
   ComposerController.reopen({
     actions: {
       insertSpoiler() {
-        this.get("toolbarEvent").applySurround("[spoiler]", "[/spoiler]", "spoiler_text");
+        this.get("toolbarEvent").applySurround(
+          "[spoiler]",
+          "[/spoiler]",
+          "spoiler_text",
+          { multiline: false }
+        );
       }
     }
   });
