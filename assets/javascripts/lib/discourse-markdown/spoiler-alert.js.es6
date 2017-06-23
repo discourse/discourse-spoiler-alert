@@ -17,7 +17,31 @@ function replaceSpoilers(text) {
   return text;
 }
 
+function setupMarkdownIt(helper) {
+
+  helper.registerOptions((opts, siteSettings) => {
+    opts.features['spoiler-alert'] = !!siteSettings.spoiler_enabled;
+  });
+
+  helper.registerPlugin(md => {
+    md.inline.bbcode_ruler.push('spoiler', {
+      tag: 'spoiler',
+      wrap: 'span.spoiler'
+    });
+
+    md.block.bbcode_ruler.push('spoiler', {
+      tag: 'spoiler',
+      wrap: 'div.spoiler'
+    });
+  });
+}
+
 export function setup(helper) {
   helper.whiteList([ 'span.spoiler', 'div.spoiler' ]);
-  helper.addPreProcessor(replaceSpoilers);
+
+  if (helper.markdownIt) {
+    setupMarkdownIt(helper);
+  } else {
+    helper.addPreProcessor(replaceSpoilers);
+  }
 }
