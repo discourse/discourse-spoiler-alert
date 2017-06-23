@@ -1,6 +1,4 @@
 require 'rails_helper'
-
-require 'rails_helper'
 require 'html_normalize'
 
 describe PrettyText do
