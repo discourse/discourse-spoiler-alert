@@ -24,12 +24,12 @@ function setupMarkdownIt(helper) {
   });
 
   helper.registerPlugin(md => {
-    md.inline.bbcode_ruler.push('spoiler', {
+    md.inline.bbcode.ruler.push('spoiler', {
       tag: 'spoiler',
       wrap: 'span.spoiler'
     });
 
-    md.block.bbcode_ruler.push('spoiler', {
+    md.block.bbcode.ruler.push('spoiler', {
       tag: 'spoiler',
       wrap: 'div.spoiler'
     });
