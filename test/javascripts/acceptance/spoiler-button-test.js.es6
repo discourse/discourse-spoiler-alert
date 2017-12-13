@@ -14,8 +14,8 @@ test('spoiler button', assert => {
   });
 
   click('#create-topic');
-  click('button.options');
-  click(`.popup-menu button:contains(${I18n.t("spoiler.title")})`);
+  expandSelectKit('.toolbar-popup-menu-options');
+  selectKitSelectRow('insertSpoiler', { selector: '.toolbar-popup-menu-options'});
 
   andThen(() => {
     assert.equal(
@@ -37,8 +37,8 @@ test('spoiler button', assert => {
     textarea.selectionEnd = textarea.value.length;
   });
 
-  click('button.options');
-  click(`.popup-menu button:contains(${I18n.t("spoiler.title")})`);
+  expandSelectKit('.toolbar-popup-menu-options');
+  selectKitSelectRow('insertSpoiler', { selector: '.toolbar-popup-menu-options'});
 
   andThen(() => {
     assert.equal(
@@ -60,8 +60,8 @@ test('spoiler button', assert => {
     textarea.selectionEnd = 21;
   });
 
-  click('button.options');
-  click(`.popup-menu button:contains(${I18n.t("spoiler.title")})`);
+  expandSelectKit('.toolbar-popup-menu-options');
+  selectKitSelectRow('insertSpoiler', { selector: '.toolbar-popup-menu-options'});
 
   andThen(() => {
     assert.equal(
@@ -83,8 +83,8 @@ test('spoiler button', assert => {
     textarea.selectionEnd = 21;
   });
 
-  click('button.options');
-  click(`.popup-menu button:contains(${I18n.t("spoiler.title")})`);
+  expandSelectKit('.toolbar-popup-menu-options');
+  selectKitSelectRow('insertSpoiler', { selector: '.toolbar-popup-menu-options'});
 
   andThen(() => {
     assert.equal(
