@@ -1,12 +1,21 @@
 import { acceptance } from "helpers/qunit-helpers";
+import { clearPopupMenuOptionsCallback } from "discourse/controllers/composer";
 
-acceptance('Spoiler Button', { loggedIn: true, settings: { spoiler_enabled: true }});
+acceptance('Spoiler Button', {
+  loggedIn: true,
+  settings: { spoiler_enabled: true },
+  beforeEach() {
+    clearPopupMenuOptionsCallback();
+  }
+});
 
 function findTextarea() {
   return find(".d-editor-input")[0];
 }
 
 test('spoiler button', assert => {
+  const popUpMenu = selectKit('.toolbar-popup-menu-options');
+
   visit("/");
 
   andThen(() => {
@@ -14,8 +23,7 @@ test('spoiler button', assert => {
   });
 
   click('#create-topic');
-  expandSelectKit('.toolbar-popup-menu-options');
-  selectKitSelectRow('insertSpoiler', { selector: '.toolbar-popup-menu-options'});
+  popUpMenu.expand().selectRowByValue('insertSpoiler');
 
   andThen(() => {
     assert.equal(
@@ -37,8 +45,7 @@ test('spoiler button', assert => {
     textarea.selectionEnd = textarea.value.length;
   });
 
-  expandSelectKit('.toolbar-popup-menu-options');
-  selectKitSelectRow('insertSpoiler', { selector: '.toolbar-popup-menu-options'});
+  popUpMenu.expand().selectRowByValue('insertSpoiler');
 
   andThen(() => {
     assert.equal(
@@ -60,8 +67,7 @@ test('spoiler button', assert => {
     textarea.selectionEnd = 21;
   });
 
-  expandSelectKit('.toolbar-popup-menu-options');
-  selectKitSelectRow('insertSpoiler', { selector: '.toolbar-popup-menu-options'});
+  popUpMenu.expand().selectRowByValue('insertSpoiler');
 
   andThen(() => {
     assert.equal(
@@ -83,8 +89,7 @@ test('spoiler button', assert => {
     textarea.selectionEnd = 21;
   });
 
-  expandSelectKit('.toolbar-popup-menu-options');
-  selectKitSelectRow('insertSpoiler', { selector: '.toolbar-popup-menu-options'});
+  popUpMenu.expand().selectRowByValue('insertSpoiler');
 
   andThen(() => {
     assert.equal(
