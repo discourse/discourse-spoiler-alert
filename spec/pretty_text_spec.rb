@@ -1,10 +1,9 @@
 require 'rails_helper'
-require 'html_normalize'
 
 describe PrettyText do
 
   def n(html)
-    HtmlNormalize.normalize(html)
+    html.strip
   end
 
   it 'can spoil blocks' do
