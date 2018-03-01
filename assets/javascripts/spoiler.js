@@ -38,11 +38,14 @@
   function blurLinkAndPre($spoiler, radius) {
     $("a,pre", $spoiler).each(function(index, link) {
       var value = radius > 0 ? "blur(" + radius + "px)" : "";
+      var pointer = radius > 0 ? "none" : "";
       if (isIE) {
-        $(link).css("-ms-filter", "progid:DXImageTransform.Microsoft.Blur(pixelradius="+radius+")");
+        $(link).css("-ms-filter", "progid:DXImageTransform.Microsoft.Blur(pixelradius="+radius+")")
+               .css("pointer-events", pointer);
       } else {
         $(link).css("filter", value)
-               .css("-webkit-filter", value);
+               .css("-webkit-filter", value)
+               .css("pointer-events", pointer);
       }
     });
   };
