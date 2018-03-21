@@ -7,8 +7,8 @@ describe PrettyText do
   end
 
   it 'can spoil blocks' do
-    md = PrettyText.cook("[spoiler]\nmy tests fail\n[/spoiler]")
-    html = "<div class=\"spoiler\">\n<p>my tests fail</p>\n</div>"
+    md = PrettyText.cook('[spoiler]\nmy tests fail\n[/spoiler]')
+    html = '<div class="spoiler">\n<p>my tests fail</p>\n</div>'
 
     expect(md).to eq(html)
   end
