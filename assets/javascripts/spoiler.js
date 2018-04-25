@@ -36,13 +36,15 @@
   };
 
   function blurLinkAndPre($spoiler, radius) {
-    $("a,pre", $spoiler).each(function(index, link) {
+    $("a", $spoiler).addClass("no-track-link");
+
+    $("a,pre", $spoiler).each(function(index, linkOrPre) {
       var value = radius > 0 ? "blur(" + radius + "px)" : "";
       if (isIE) {
-        $(link).css("-ms-filter", "progid:DXImageTransform.Microsoft.Blur(pixelradius="+radius+")");
+        $(linkOrPre).css("-ms-filter", "progid:DXImageTransform.Microsoft.Blur(pixelradius="+radius+")");
       } else {
-        $(link).css("filter", value)
-               .css("-webkit-filter", value);
+        $(linkOrPre).css("filter", value)
+                    .css("-webkit-filter", value);
       }
     });
   };
