@@ -1,4 +1,5 @@
 import { withPluginApi, decorateCooked } from 'discourse/lib/plugin-api';
+import { Tag } from 'discourse/lib/to-markdown';
 import ComposerController from 'discourse/controllers/composer';
 
 function spoil($elem) {
@@ -28,6 +29,44 @@ function initializeSpoiler(api) {
       }
     }
   });
+
+  Tag.prototype.decorate = function(text) {
+    const attr = this.element.attributes;
+    if (attr.class === "spoiled") {
+      this.prefix = "[spoiler]";
+      this.suffix = "[/spoiler]";
+    }
+
+    if (this.prefix || this.suffix) {
+      text = [this.prefix, text, this.suffix].join("");
+    }
+
+    if (this.inline) {
+      text = " " + text + " ";
+    }
+
+    return text;
+  };
+
+  Tag.block = function(name, prefix, suffix) {
+    return class extends Tag {
+      constructor() {
+        super(name, prefix, suffix);
+        this.gap = "\n\n";
+      }
+
+      decorate(text) {
+        const attr = this.element.attributes;
+        if (this.name === "div" && attr.class === "spoiled") {
+          this.prefix = "[spoiler]";
+          this.suffix = "[/spoiler]";
+          text = text.trim();
+        }
+
+        return `${this.gap}${this.prefix}${text}${this.suffix}${this.gap}`;
+      }
+    };
+  };
 }
 
 export default {
