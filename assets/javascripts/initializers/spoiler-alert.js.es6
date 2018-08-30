@@ -61,6 +61,13 @@ function initializeSpoiler(api) {
 
         decorate(text) {
           const attr = this.element.attributes;
+          const parent = this.element.parent;
+
+          if (this.name === "p" && parent && parent.name === "li") {
+            // fix for google docs
+            this.gap = "";
+          }
+
           if (this.name === "div" && attr.class === "spoiled") {
             this.prefix = "[spoiler]";
             this.suffix = "[/spoiler]";
