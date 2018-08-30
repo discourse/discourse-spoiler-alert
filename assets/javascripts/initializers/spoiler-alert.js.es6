@@ -1,9 +1,12 @@
-import { withPluginApi, decorateCooked } from 'discourse/lib/plugin-api';
-import { Tag } from 'discourse/lib/to-markdown';
-import ComposerController from 'discourse/controllers/composer';
+import { withPluginApi, decorateCooked } from "discourse/lib/plugin-api";
+import { Tag } from "discourse/lib/to-markdown";
+import ComposerController from "discourse/controllers/composer";
 
 function spoil($elem) {
-  $('.spoiler', $elem).removeClass('spoiler').addClass('spoiled').spoil();
+  $(".spoiler", $elem)
+    .removeClass("spoiler")
+    .addClass("spoiled")
+    .spoil();
 }
 
 function initializeSpoiler(api) {
@@ -11,9 +14,9 @@ function initializeSpoiler(api) {
 
   api.addToolbarPopupMenuOptionsCallback(() => {
     return {
-      action: 'insertSpoiler',
-      icon: 'magic',
-      label: 'spoiler.title'
+      action: "insertSpoiler",
+      icon: "magic",
+      label: "spoiler.title"
     };
   });
 
@@ -74,9 +77,11 @@ function initializeSpoiler(api) {
 export default {
   name: "apply-spoilers",
   initialize(container) {
-    const siteSettings = container.lookup('site-settings:main');
+    const siteSettings = container.lookup("site-settings:main");
     if (siteSettings.spoiler_enabled) {
-      withPluginApi('0.5', initializeSpoiler, { noApi: () => decorateCooked(container, spoil) });
+      withPluginApi("0.5", initializeSpoiler, {
+        noApi: () => decorateCooked(container, spoil)
+      });
     }
   }
 };

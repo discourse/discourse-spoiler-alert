@@ -10,11 +10,8 @@ test("to-markdown", async assert => {
 
   let html = `<div>Text with a</div><div class="spoiled">spoiled</div><div>word.</div>`;
   let markdown = `Text with a\n\n[spoiler]spoiled[/spoiler]\n\nword.`;
-  assert.equal(
-    toMarkdown(html),
-    markdown,
-    "it should create spoiler tag"
-  );
+
+  assert.equal(toMarkdown(html), markdown, "it should create spoiler tag");
 
   html = `Inline <span class="spoiled">spoiled</span> word.`;
   markdown = `Inline [spoiler]spoiled[/spoiler] word.`;
