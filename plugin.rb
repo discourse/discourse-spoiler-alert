@@ -1,4 +1,4 @@
-# name: Spoiler Alert!
+# name: discourse-spoiler-alert
 # about: Uses the Spoiler Alert plugin to blur text when spoiling it.
 # version: 0.4
 # authors: Robin Ward, Regis Hanol
