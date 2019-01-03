@@ -2,7 +2,6 @@
 
   var isIE = /*@cc_on!@*/false || document.documentMode,
       isFirefox = typeof InstallTrigger !== 'undefined',
-      globalIdCounter = 0,
       DEFAULTS = {
         max: { text: 10, link: 10, image: 20 },
         partial: { text: 5, link: 5, image: 6},
@@ -35,55 +34,37 @@
             .css(userSelect, "none");
   };
 
+  function blurSelector($sel, radius) {
+    var value = radius > 0 ? "blur(" + radius + "px)" : "";
+    if (isIE) {
+      $sel.css("-ms-filter", "progid:DXImageTransform.Microsoft.Blur(pixelradius="+radius+")");
+    } else {
+      $sel.css("filter", value).css("-webkit-filter", value);
+    }
+  }
+
   function blurLinkAndPre($spoiler, radius) {
     $("a", $spoiler).addClass("no-track-link");
 
     $("a,pre", $spoiler).each(function(index, linkOrPre) {
-      var value = radius > 0 ? "blur(" + radius + "px)" : "";
-      if (isIE) {
-        $(linkOrPre).css("-ms-filter", "progid:DXImageTransform.Microsoft.Blur(pixelradius="+radius+")");
-      } else {
-        $(linkOrPre).css("filter", value)
-                    .css("-webkit-filter", value);
-      }
+      blurSelector($(linkOrPre), radius);
     });
   };
 
-  function blurImage($spoiler, radius) {
-    // on the first pass, transform images into SVG
-    $("img", $spoiler).each(function(index, image) {
-      var isEmoji = $(this).hasClass('emoji');
-      var transform = function() {
-        var w = isEmoji ? 20 : image.width,
-            h = isEmoji ? 20 : image.height,
-            id = ++globalIdCounter;
-        var svg = "<svg data-spoiler-id='" + id + "' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' width='" + w + "' height='" + h + "'>" +
-                  "<defs><filter id='blur-" + id + "'><feGaussianBlur id='gaussian-" + id + "' stdDeviation='" + radius + "'></feGaussianBlur></filter></defs>" +
-                  "<image xlink:href='" + image.src + "' filter='url(#blur-" + id + ")' style='filter: url(#blur-" + id + ")' width='" + w + "' height='" + h + "'></image>" +
-                  "</svg>";
-        $(image).replaceWith(svg);
-      };
-      // do we need to wait for the image to load?
-      if (image.naturalWidth === 0 || image.naturalHeight === 0) {
-        image.onload = transform;
-      } else {
-        transform();
-      }
-    });
-
-    // change the blur radius
-    $("svg", $spoiler).each(function(index, svg) {
-      var id = svg.getAttribute("data-spoiler-id");
-      var element = svg.getElementById("gaussian-" + id);
-      if (element) { element.setAttribute("stdDeviation", radius); }
-    });
+  function blurImageIE($spoiler, radius) {
+    var $images = $('img', $spoiler);
+    if (isIE) {
+      $images.css('opacity', radius == 0 ? '1.0' : '0.0');
+    } else {
+      blurSelector($images, radius);
+    }
   };
 
   var applyBlur = function($spoiler, option) {
     blurLazyYT($spoiler);
     blurText($spoiler, option.text);
     blurLinkAndPre($spoiler, option.link);
-    blurImage($spoiler, option.image);
+    blurImageIE($spoiler, option.image);
   };
 
   var applySpoilers = function($spoiler, options) {
