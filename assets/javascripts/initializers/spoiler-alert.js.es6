@@ -1,4 +1,4 @@
-import { withPluginApi, decorateCooked } from "discourse/lib/plugin-api";
+import { withPluginApi } from "discourse/lib/plugin-api";
 import { Tag } from "discourse/lib/to-markdown";
 import ComposerController from "discourse/controllers/composer";
 
