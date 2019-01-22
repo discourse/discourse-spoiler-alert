@@ -98,11 +98,14 @@
         if ($spoiler.data("spoiler-state") === "blurred") {
           $spoiler.data("spoiler-state", "revealed").css("cursor", "auto");
           applyBlur($spoiler, noBlur);
+          e.preventDefault();
         } else {
-          $spoiler.data("spoiler-state", "blurred").css("cursor", "pointer");
-          applyBlur($spoiler, partialBlur);
+          if (e.target && e.target.tagName !== "A") {
+            $spoiler.data("spoiler-state", "blurred").css("cursor", "pointer");
+            applyBlur($spoiler, partialBlur);
+            e.preventDefault();
+          }
         }
-        e.preventDefault();
       });
   };
 
