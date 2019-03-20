@@ -5,3 +5,7 @@
 .spoiled svg {
   vertical-align: middle;
 }
+
+.spoiled img {
+  -webkit-transform: translateZ(0); // Safari jitter fix
+}
