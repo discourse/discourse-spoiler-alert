@@ -23,4 +23,7 @@ after_initialize do
     fragment.css(".spoiler").remove
   end
 
+  on(:pre_notification_alert) do |user, payload|
+    payload[:excerpt] = payload[:excerpt].gsub(/\<span class=\"spoiler\"\>.*\<\/span\>/, "[#{I18n.t 'spoiler_alert.excerpt_spoiler'}]")
+  end
 end
