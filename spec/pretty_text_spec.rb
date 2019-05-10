@@ -2,6 +2,8 @@ require 'rails_helper'
 
 describe PrettyText do
 
+  let(:post) { Fabricate(:post) }
+
   def n(html)
     html.strip
   end
@@ -16,6 +18,14 @@ describe PrettyText do
   it 'can spoil inline' do
     md = PrettyText.cook('I like watching [spoiler]my tests fail[/spoiler]')
     html = '<p>I like watching <span class="spoiler">my tests fail</span></p>'
+
+    expect(md).to eq(html)
+  end
+
+  it 'can replace spoilers in emails' do
+    md = PrettyText.cook('I like watching [spoiler]my tests fail[/spoiler]')
+    md = PrettyText.format_for_email(md, post)
+    html = "<p>I like watching <span class=\"spoiler\"><a href=\"#{post.full_url}\">spoiler</a></span></p>"
 
     expect(md).to eq(html)
   end
