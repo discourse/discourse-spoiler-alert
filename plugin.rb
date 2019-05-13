@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # name: discourse-spoiler-alert
 # about: Uses the Spoiler Alert plugin to blur text when spoiling it.
 # version: 0.4
