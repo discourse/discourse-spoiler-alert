@@ -13,16 +13,13 @@ register_asset "stylesheets/discourse_spoiler_alert.css"
 
 after_initialize do
 
-  # black out spoilers in emails
-  Email::Styles.register_plugin_style do |fragment|
-    fragment.css(".spoiler").each do |spoiler|
-      spoiler["style"] = "color: #000; background-color: #000;"
+  on(:reduce_cooked) do |fragment, post|
+    fragment.css(".spoiler").each do |el|
+      link = fragment.document.create_element("a")
+      link["href"] = post.url
+      link.content = I18n.t("spoiler_alert.excerpt_spoiler")
+      el.inner_html = link.to_html
     end
-  end
-
-  # remove spoilers in embedded comments
-  on(:reduce_cooked) do |fragment|
-    fragment.css(".spoiler").remove
   end
 
   on(:pre_notification_alert) do |user, payload|
