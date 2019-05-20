@@ -15,10 +15,6 @@ after_initialize do
 
   on(:reduce_cooked) do |fragment, post|
     fragment.css(".spoiler").each do |el|
-      if !post
-        el.inner_html = I18n.t("spoiler_alert.excerpt_spoiler")
-        next
-      end
       link = fragment.document.create_element("a")
       link["href"] = post.url
       link.content = I18n.t("spoiler_alert.excerpt_spoiler")
