@@ -31,4 +31,12 @@ describe PrettyText do
 
     expect(md).to eq(html)
   end
+
+  it 'doesn\'t blow up when post is nil' do
+    md = PrettyText.cook('I like watching [spoiler]my tests fail[/spoiler]')
+    md = PrettyText.format_for_email(md, nil)
+    html = "<p>I like watching <span class=\"spoiler\">spoiler</span></p>"
+
+    expect(md).to eq(html)
+  end
 end
