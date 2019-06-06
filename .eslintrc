@@ -46,7 +46,6 @@
     "visible":true,
     "invisible":true,
     "asyncRender":true,
-    "selectKit":true,
     "asyncTestDiscourse":true,
     "fixture":true,
     "find":true,
