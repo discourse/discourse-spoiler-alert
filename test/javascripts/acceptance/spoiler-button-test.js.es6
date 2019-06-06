@@ -19,7 +19,7 @@ test("spoiler button", async assert => {
 
   await click("#create-topic");
   await popUpMenu.expand();
-  await popUpMenu.selectRowByValueAwait("insertSpoiler");
+  await popUpMenu.selectRowByValue("insertSpoiler");
 
   assert.equal(
     find(".d-editor-input").val(),
@@ -45,7 +45,7 @@ test("spoiler button", async assert => {
   textarea.selectionEnd = textarea.value.length;
 
   await popUpMenu.expand();
-  await popUpMenu.selectRowByValueAwait("insertSpoiler");
+  await popUpMenu.selectRowByValue("insertSpoiler");
 
   assert.equal(
     find(".d-editor-input").val(),
@@ -70,7 +70,7 @@ test("spoiler button", async assert => {
   textarea.selectionEnd = 21;
 
   await popUpMenu.expand();
-  await popUpMenu.selectRowByValueAwait("insertSpoiler");
+  await popUpMenu.selectRowByValue("insertSpoiler");
 
   assert.equal(
     find(".d-editor-input").val(),
@@ -95,7 +95,7 @@ test("spoiler button", async assert => {
   textarea.selectionEnd = 21;
 
   await popUpMenu.expand();
-  await popUpMenu.selectRowByValueAwait("insertSpoiler");
+  await popUpMenu.selectRowByValue("insertSpoiler");
 
   assert.equal(
     find(".d-editor-input").val(),
