@@ -10,7 +10,7 @@ function spoil($elem) {
 }
 
 function initializeSpoiler(api) {
-  api.decorateCooked(spoil);
+  api.decorateCooked(spoil, { id: "spoiler-alert" });
 
   api.addToolbarPopupMenuOptionsCallback(() => {
     return {
