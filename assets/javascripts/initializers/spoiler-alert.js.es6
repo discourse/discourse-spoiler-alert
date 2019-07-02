@@ -27,7 +27,7 @@ function initializeSpoiler(api) {
           "[spoiler]",
           "[/spoiler]",
           "spoiler_text",
-          { multiline: false }
+          { multiline: false, useBlockMode: true }
         );
       }
     }

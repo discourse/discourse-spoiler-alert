@@ -113,4 +113,30 @@ test("spoiler button", async assert => {
     30,
     "it should end highlighting at the right position"
   );
+
+  // enforce block mode when selected text is multiline
+  await fillIn(".d-editor-input", "Before\nthis is\n\nhidden\nAfter");
+
+  textarea.selectionStart = 7;
+  textarea.selectionEnd = 22;
+
+  await popUpMenu.expand();
+  await popUpMenu.selectRowByValue("insertSpoiler");
+
+  assert.equal(
+    find(".d-editor-input").val(),
+    `Before\n[spoiler]\nthis is\n\nhidden\n[/spoiler]\nAfter`,
+    "it should contain the right output"
+  );
+
+  assert.equal(
+    textarea.selectionStart,
+    17,
+    "it should start highlighting at the right position"
+  );
+  assert.equal(
+    textarea.selectionEnd,
+    32,
+    "it should end highlighting at the right position"
+  );
 });
