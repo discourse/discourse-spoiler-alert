@@ -22,7 +22,9 @@ after_initialize do
     end
   end
 
-  on(:pre_notification_alert) do |user, payload|
-    payload[:excerpt] = payload[:excerpt].gsub(/\<span class=\"spoiler\"\>.*\<\/span\>/, "[#{I18n.t 'spoiler_alert.excerpt_spoiler'}]")
+  # Remove spoilers from topic exerpts
+  on(:reduce_excerpt) do |doc, post|
+    doc.css(".spoiler").remove
   end
+
 end
