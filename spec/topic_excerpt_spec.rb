@@ -11,4 +11,3 @@ RSpec.describe PrettyText do
   end
 
 end
-
