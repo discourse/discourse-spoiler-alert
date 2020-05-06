@@ -19,5 +19,3 @@ doc/
 node_modules/
 
 *.swp
-
-.rubocop-https---raw-githubusercontent-com-discourse-discourse-master--rubocop-yml
