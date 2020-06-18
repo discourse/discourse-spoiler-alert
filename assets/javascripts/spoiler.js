@@ -8,14 +8,14 @@
     });
   }
 
-  function blurText($spoiler) {
+  function blur($spoiler) {
     $spoiler.addClass("spoiler-blurred");
     $("a", $spoiler).addClass("no-track-link");
   }
 
   var applyBlur = function($spoiler) {
     blurLazyYT($spoiler);
-    blurText($spoiler);
+    blur($spoiler);
   };
 
   var applySpoilers = function($spoiler) {
