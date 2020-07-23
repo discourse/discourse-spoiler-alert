@@ -35,7 +35,7 @@
     });
   };
 
-  $.fn.spoil = function(options) {
+  $.fn.spoil = function() {
     return this.each(function() {
       applySpoilers($(this));
     });
