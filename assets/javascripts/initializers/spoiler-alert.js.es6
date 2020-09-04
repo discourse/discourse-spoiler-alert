@@ -3,10 +3,7 @@ import { Tag } from "discourse/lib/to-markdown";
 import ComposerController from "discourse/controllers/composer";
 
 function spoil($elem) {
-  $(".spoiler", $elem)
-    .removeClass("spoiler")
-    .addClass("spoiled")
-    .spoil();
+  $(".spoiler", $elem).removeClass("spoiler").addClass("spoiled").spoil();
 }
 
 function initializeSpoiler(api) {
@@ -16,7 +13,7 @@ function initializeSpoiler(api) {
     return {
       action: "insertSpoiler",
       icon: "magic",
-      label: "spoiler.title"
+      label: "spoiler.title",
     };
   });
 
@@ -29,12 +26,12 @@ function initializeSpoiler(api) {
           "spoiler_text",
           { multiline: false, useBlockMode: true }
         );
-      }
-    }
+      },
+    },
   });
 
   if (Tag) {
-    Tag.prototype.decorate = function(text) {
+    Tag.prototype.decorate = function (text) {
       const attr = this.element.attributes;
       if (attr.class === "spoiled") {
         this.prefix = "[spoiler]";
@@ -52,7 +49,7 @@ function initializeSpoiler(api) {
       return text;
     };
 
-    Tag.block = function(name, prefix, suffix) {
+    Tag.block = function (name, prefix, suffix) {
       return class extends Tag {
         constructor() {
           super(name, prefix, suffix);
@@ -88,5 +85,5 @@ export default {
     if (siteSettings.spoiler_enabled) {
       withPluginApi("0.5", initializeSpoiler);
     }
-  }
+  },
 };

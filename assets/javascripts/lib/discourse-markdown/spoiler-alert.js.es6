@@ -28,15 +28,15 @@ function setupMarkdownIt(helper) {
     opts.features["spoiler-alert"] = !!siteSettings.spoiler_enabled;
   });
 
-  helper.registerPlugin(md => {
+  helper.registerPlugin((md) => {
     md.inline.bbcode.ruler.push("spoiler", {
       tag: "spoiler",
-      wrap: "span.spoiler"
+      wrap: "span.spoiler",
     });
 
     md.block.bbcode.ruler.push("spoiler", {
       tag: "spoiler",
-      wrap: "div.spoiler"
+      wrap: "div.spoiler",
     });
   });
 }
