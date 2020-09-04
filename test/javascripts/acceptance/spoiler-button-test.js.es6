@@ -7,10 +7,10 @@ acceptance("Spoiler Button", {
   settings: { spoiler_enabled: true },
   beforeEach() {
     clearPopupMenuOptionsCallback();
-  }
+  },
 });
 
-test("spoiler button", async assert => {
+test("spoiler button", async (assert) => {
   const popUpMenu = selectKit(".toolbar-popup-menu-options");
 
   await visit("/");
