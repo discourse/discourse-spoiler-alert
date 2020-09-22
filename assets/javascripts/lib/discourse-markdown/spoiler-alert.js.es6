@@ -19,7 +19,7 @@ function replaceSpoilers(text) {
       /\[spoiler\]((?:(?!\[spoiler\]|\[\/spoiler\])[\S\s])*)\[\/spoiler\]/gi,
       insertSpoiler
     ))
-  );
+  ) {}
   return text;
 }
 
