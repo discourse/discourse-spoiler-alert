@@ -13,12 +13,12 @@
     $("a", $spoiler).addClass("no-track-link");
   }
 
-  let applyBlur = function ($spoiler) {
+  var applyBlur = function ($spoiler) {
     blurLazyYT($spoiler);
     blur($spoiler);
   };
 
-  let applySpoilers = function ($spoiler) {
+  var applySpoilers = function ($spoiler) {
     $spoiler.data("spoiler-state", "blurred");
 
     applyBlur($spoiler);
