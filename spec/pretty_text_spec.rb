@@ -3,7 +3,6 @@
 require 'rails_helper'
 
 describe PrettyText do
-
   let(:post) { Fabricate(:post) }
 
   def n(html)
