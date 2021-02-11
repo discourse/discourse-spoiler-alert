@@ -12,9 +12,8 @@
 }
 
 .spoiler-blurred {
+  @include unselectable;
   cursor: pointer;
-  user-select: none;
-  -webkit-user-select: none;
   filter: blur(0.5em);
 
   img {
