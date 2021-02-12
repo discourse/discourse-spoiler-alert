@@ -1,22 +1,19 @@
-discourse-spoiler-alert
-=======================
+# discourse-spoiler-alert
 
 Spoiler plugin for [Discourse](http://discourse.org) highly inspired by the [spoiler-alert](http://joshbuddy.github.io/spoiler-alert/) jQuery plugin.
 
-Usage
-=====
+## Usage
 
 In your posts, surround text or images with `[spoiler]` ... `[/spoiler]`.
 For example:
 
 ```
-   I watched the murder mystery on TV last night. [spoiler]The butler did it[/spoiler].
+I watched the murder mystery on TV last night. [spoiler]The butler did it[/spoiler].
 ```
 
-Installation
-============
+## Installation
 
-* Add the plugin's repo url to your container's `app.yml` file
+- Add the plugin's repo url to your container's `app.yml` file
 
 ```yml
 hooks:
@@ -29,7 +26,7 @@ hooks:
           - git clone https://github.com/discourse/discourse-spoiler-alert.git
 ```
 
-* Rebuild the container
+- Rebuild the container
 
 ```
 cd /var/discourse
@@ -37,6 +34,6 @@ git pull
 ./launcher rebuild app
 ```
 
-License
-=======
+## License
+
 MIT

@@ -1,25 +1,29 @@
 .spoiled {
-  -webkit-transform: translateZ(0); // Safari jitter fix
   cursor: auto;
+  -webkit-transform: translateZ(0); // Safari jitter fix
+
   .lightbox .meta {
     display: none;
   }
+
   svg {
     vertical-align: middle;
   }
 }
 
 .spoiler-blurred {
+  @include unselectable;
   cursor: pointer;
-  user-select: none;
-  -webkit-user-select: none;
   filter: blur(0.5em);
+
   img {
     filter: blur(1em);
   }
+
   .discourse-no-touch & {
     &:hover {
       filter: blur(0.18em);
+
       img {
         filter: blur(0.5em);
       }
