@@ -1,5 +1,7 @@
 # discourse-spoiler-alert
 
+https://meta.discourse.org/t/discourse-spoiler-alert/12650/
+
 Spoiler plugin for [Discourse](http://discourse.org) highly inspired by the [spoiler-alert](http://joshbuddy.github.io/spoiler-alert/) jQuery plugin.
 
 ## Usage
