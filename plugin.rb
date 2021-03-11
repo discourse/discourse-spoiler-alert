@@ -9,7 +9,7 @@
 enabled_site_setting :spoiler_enabled
 
 register_asset "javascripts/spoiler.js"
-register_asset "stylesheets/discourse_spoiler_alert.css"
+register_asset "stylesheets/discourse_spoiler_alert.scss"
 
 after_initialize do
 
