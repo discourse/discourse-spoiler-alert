@@ -1,13 +1,18 @@
 import { withPluginApi } from "discourse/lib/plugin-api";
 import { Tag } from "discourse/lib/to-markdown";
 import ComposerController from "discourse/controllers/composer";
+import applySpoiler from "discourse/plugins/discourse-spoiler-alert/lib/apply-spoiler";
 
-function spoil($elem) {
-  $(".spoiler", $elem).removeClass("spoiler").addClass("spoiled").spoil();
+function spoil(element) {
+  element.querySelectorAll(".spoiler").forEach((spoiler) => {
+    spoiler.classList.remove("spoiler");
+    spoiler.classList.add("spoiled");
+    applySpoiler(spoiler);
+  });
 }
 
 function initializeSpoiler(api) {
-  api.decorateCooked(spoil, { id: "spoiler-alert" });
+  api.decorateCookedElement(spoil, { id: "spoiler-alert" });
 
   api.addToolbarPopupMenuOptionsCallback(() => {
     return {
@@ -80,6 +85,7 @@ function initializeSpoiler(api) {
 
 export default {
   name: "apply-spoilers",
+
   initialize(container) {
     const siteSettings = container.lookup("site-settings:main");
     if (siteSettings.spoiler_enabled) {
