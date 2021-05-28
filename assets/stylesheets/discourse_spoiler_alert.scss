@@ -9,6 +9,12 @@
   svg {
     vertical-align: middle;
   }
+
+  // disables pausing animations and lightboxes inside a spoiler
+  img.animated,
+  .lightbox {
+    pointer-events: none;
+  }
 }
 
 .spoiler-blurred {
