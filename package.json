@@ -1,6 +1,6 @@
 {
   "name": "discourse",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "repository": "git@github.com:discourse/discourse-spoiler-alert.git",
   "author": "Discourse",
   "license": "MIT",

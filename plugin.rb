@@ -2,9 +2,10 @@
 
 # name: discourse-spoiler-alert
 # about: Uses the Spoiler Alert plugin to blur text when spoiling it.
-# version: 0.4
+# version: 1.1.0
 # authors: Robin Ward, Regis Hanol
 # url: https://github.com/discourse/discourse-spoiler-alert
+# transpile_js: true
 
 enabled_site_setting :spoiler_enabled
 
