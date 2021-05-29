@@ -1,32 +1,38 @@
-function blurLazyYT(spoilerElement) {
-  spoilerElement.querySelectorAll("div.lazyYT").forEach((element) => {
-    let id = element.getAttribute("data-youtube-id");
-    let p = document.createElement("p");
-    p.textContent = `https://youtube.com/watch?v=${id}`;
+const INTERACTIVE_SELECTOR = [
+  "a",
+  "area",
+  "audio",
+  "button",
+  "details",
+  "embed",
+  "iframe",
+  "img.animated",
+  "input",
+  "map",
+  "object",
+  "option",
+  "portal",
+  "select",
+  "textarea",
+  "track",
+  "video",
+  ".lightbox",
+].join(", ");
 
-    element.replaceWith(p);
-  });
-}
-
-function blur(spoilerElement) {
-  spoilerElement.classList.add("spoiler-blurred");
-  spoilerElement
-    .querySelectorAll("a")
-    .forEach((element) => element.classList.add("no-track-link"));
+function isInteractive(event) {
+  return event.defaultPrevented || event.target.closest(INTERACTIVE_SELECTOR);
 }
 
 export default function applySpoiler(element) {
   element.setAttribute("data-spoiler-state", "blurred");
-
-  blurLazyYT(element);
-  blur(element);
+  element.classList.add("spoiler-blurred");
 
   element.addEventListener("click", (event) => {
     if (element.getAttribute("data-spoiler-state") === "blurred") {
       element.setAttribute("data-spoiler-state", "revealed");
       element.classList.remove("spoiler-blurred");
       event.preventDefault();
-    } else {
+    } else if (!isInteractive(event)) {
       element.setAttribute("data-spoiler-state", "blurred");
       element.classList.add("spoiler-blurred");
     }

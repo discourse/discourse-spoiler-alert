@@ -16,6 +16,27 @@
   cursor: pointer;
   filter: blur(0.5em);
 
+  a,
+  area,
+  audio,
+  button,
+  details,
+  embed,
+  iframe,
+  img.animated,
+  input,
+  map,
+  object,
+  option,
+  portal,
+  select,
+  textarea,
+  track,
+  video,
+  .lightbox {
+    pointer-events: none;
+  }
+
   img {
     filter: blur(1em);
   }
