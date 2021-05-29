@@ -42,7 +42,7 @@ function setupMarkdownIt(helper) {
 }
 
 export function setup(helper) {
-  helper.whiteList(["span.spoiler", "div.spoiler"]);
+  helper.allowList(["span.spoiler", "div.spoiler"]);
 
   if (helper.markdownIt) {
     setupMarkdownIt(helper);
