@@ -4,6 +4,4 @@
 # To work with us on translations, join this project:
 # https://translate.discourse.org/
 
-it:
-  site_settings:
-    spoiler_enabled: 'Abilitare il plugin spoiler. Se modifichi questa opzione devi aggiornare tutti i messaggi con: "rake posts:rebake".'
+ko:
