@@ -5,3 +5,7 @@
 # https://translate.discourse.org/
 
 he:
+  site_settings:
+    spoiler_enabled: 'הפעלת תוסף הקלקלן. שינוי של הגדרה זו יאלץ אותך לאפות את כל הפוסטים מחדש עם: „rake posts:rebake”.'
+  spoiler_alert:
+    excerpt_spoiler: "קלקלן"
