@@ -5,3 +5,8 @@
 # https://translate.discourse.org/
 
 he:
+  js:
+    spoiler:
+      title: טשטוש קלקלן
+    composer:
+      spoiler_text: "טקסט זה יטושטש"

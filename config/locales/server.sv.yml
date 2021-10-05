@@ -5,3 +5,7 @@
 # https://translate.discourse.org/
 
 sv:
+  site_settings:
+    spoiler_enabled: 'Aktivera spoiler-plugin. Om du senare ändrar detta måste du arbeta om alla inlägg med: "rake posts:rebake".'
+  spoiler_alert:
+    excerpt_spoiler: "spoiler"

@@ -5,3 +5,8 @@
 # https://translate.discourse.org/
 
 sv:
+  js:
+    spoiler:
+      title: Blurra spoiler
+    composer:
+      spoiler_text: "Denna text kommer att blurras"
