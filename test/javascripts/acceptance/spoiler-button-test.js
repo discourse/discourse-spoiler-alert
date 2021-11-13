@@ -1,6 +1,12 @@
+import {
+  acceptance,
+  exists,
+  query,
+} from "discourse/tests/helpers/qunit-helpers";
+import { test } from "qunit";
+import { click, fillIn, visit } from "@ember/test-helpers";
 import I18n from "I18n";
 import selectKit from "discourse/tests/helpers/select-kit-helper";
-import { acceptance } from "discourse/tests/helpers/qunit-helpers";
 import { clearPopupMenuOptionsCallback } from "discourse/controllers/composer";
 
 acceptance("Spoiler Button", function (needs) {
@@ -21,19 +27,19 @@ acceptance("Spoiler Button", function (needs) {
     await popUpMenu.expand();
     await popUpMenu.selectRowByValue("insertSpoiler");
 
-    assert.equal(
-      find(".d-editor-input").val(),
+    assert.strictEqual(
+      query(".d-editor-input").value,
       `[spoiler]${I18n.t("composer.spoiler_text")}[/spoiler]`,
       "it should contain the right output"
     );
 
-    let textarea = await find(".d-editor-input")[0];
-    assert.equal(
+    let textarea = query(".d-editor-input");
+    assert.strictEqual(
       textarea.selectionStart,
       9,
       "it should start highlighting at the right position"
     );
-    assert.equal(
+    assert.strictEqual(
       textarea.selectionEnd,
       I18n.t("composer.spoiler_text").length + 9,
       "it should end highlighting at the right position"
@@ -47,18 +53,18 @@ acceptance("Spoiler Button", function (needs) {
     await popUpMenu.expand();
     await popUpMenu.selectRowByValue("insertSpoiler");
 
-    assert.equal(
-      find(".d-editor-input").val(),
+    assert.strictEqual(
+      query(".d-editor-input").val(),
       `[spoiler]This is hidden[/spoiler]`,
       "it should contain the right output"
     );
 
-    assert.equal(
+    assert.strictEqual(
       textarea.selectionStart,
       9,
       "it should start highlighting at the right position"
     );
-    assert.equal(
+    assert.strictEqual(
       textarea.selectionEnd,
       23,
       "it should end highlighting at the right position"
@@ -72,18 +78,18 @@ acceptance("Spoiler Button", function (needs) {
     await popUpMenu.expand();
     await popUpMenu.selectRowByValue("insertSpoiler");
 
-    assert.equal(
-      find(".d-editor-input").val(),
+    assert.strictEqual(
+      query(".d-editor-input").value,
       `Before [spoiler]this is hidden[/spoiler] After`,
       "it should contain the right output"
     );
 
-    assert.equal(
+    assert.strictEqual(
       textarea.selectionStart,
       16,
       "it should start highlighting at the right position"
     );
-    assert.equal(
+    assert.strictEqual(
       textarea.selectionEnd,
       30,
       "it should end highlighting at the right position"
@@ -97,18 +103,18 @@ acceptance("Spoiler Button", function (needs) {
     await popUpMenu.expand();
     await popUpMenu.selectRowByValue("insertSpoiler");
 
-    assert.equal(
-      find(".d-editor-input").val(),
+    assert.strictEqual(
+      query(".d-editor-input").value,
       `Before\n[spoiler]this is hidden[/spoiler]\nAfter`,
       "it should contain the right output"
     );
 
-    assert.equal(
+    assert.strictEqual(
       textarea.selectionStart,
       16,
       "it should start highlighting at the right position"
     );
-    assert.equal(
+    assert.strictEqual(
       textarea.selectionEnd,
       30,
       "it should end highlighting at the right position"
@@ -123,18 +129,18 @@ acceptance("Spoiler Button", function (needs) {
     await popUpMenu.expand();
     await popUpMenu.selectRowByValue("insertSpoiler");
 
-    assert.equal(
-      find(".d-editor-input").val(),
+    assert.strictEqual(
+      query(".d-editor-input").value,
       `Before\n[spoiler]\nthis is\n\nhidden\n[/spoiler]\nAfter`,
       "it should contain the right output"
     );
 
-    assert.equal(
+    assert.strictEqual(
       textarea.selectionStart,
       17,
       "it should start highlighting at the right position"
     );
-    assert.equal(
+    assert.strictEqual(
       textarea.selectionEnd,
       32,
       "it should end highlighting at the right position"
