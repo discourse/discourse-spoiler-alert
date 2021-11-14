@@ -54,7 +54,7 @@ acceptance("Spoiler Button", function (needs) {
     await popUpMenu.selectRowByValue("insertSpoiler");
 
     assert.strictEqual(
-      query(".d-editor-input").val(),
+      query(".d-editor-input").value,
       `[spoiler]This is hidden[/spoiler]`,
       "it should contain the right output"
     );
