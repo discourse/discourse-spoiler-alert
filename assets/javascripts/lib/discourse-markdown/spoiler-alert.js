@@ -1,9 +1,3 @@
-import { registerOption } from "pretty-text/pretty-text";
-
-registerOption((siteSettings, opts) => {
-  opts.features["spoiler-alert"] = !!siteSettings.spoiler_enabled;
-});
-
 const CONTAINS_BLOCK_REGEX = /\n|<img|!\[[^\]]*\][(\[]/;
 
 function insertSpoiler(_, spoiler) {
