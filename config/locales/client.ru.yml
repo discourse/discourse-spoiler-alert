@@ -5,3 +5,8 @@
 # https://translate.discourse.org/
 
 ru:
+  js:
+    spoiler:
+      title: Размыть спойлер
+    composer:
+      spoiler_text: "Этот текст будет размыт"
