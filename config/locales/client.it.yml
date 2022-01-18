@@ -7,6 +7,6 @@
 it:
   js:
     spoiler:
-      title: Sfoca Spoiler
+      title: Rendi illeggibile spoiler
     composer:
-      spoiler_text: "Questo testo verrà sfocato"
+      spoiler_text: "Questo testo verrà reso illeggibile"

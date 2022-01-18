@@ -5,3 +5,8 @@
 # https://translate.discourse.org/
 
 de:
+  js:
+    spoiler:
+      title: Spoiler unkenntlich machen
+    composer:
+      spoiler_text: "Dieser Text wird unkenntlich gemacht"

@@ -5,3 +5,8 @@
 # https://translate.discourse.org/
 
 ar:
+  js:
+    spoiler:
+      title: تنبيه بالتمويه
+    composer:
+      spoiler_text: "سيتم تمويه هذا النص"
