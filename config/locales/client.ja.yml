@@ -5,3 +5,8 @@
 # https://translate.discourse.org/
 
 ja:
+  js:
+    spoiler:
+      title: ネタバレをぼかす
+    composer:
+      spoiler_text: "このテキストはぼかし表示されます"

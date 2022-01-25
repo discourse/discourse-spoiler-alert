@@ -5,3 +5,8 @@
 # https://translate.discourse.org/
 
 pt_BR:
+  js:
+    spoiler:
+      title: Dificuldador de desfoque
+    composer:
+      spoiler_text: "Este texto será desfocado"
