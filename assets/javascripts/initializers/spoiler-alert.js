@@ -35,52 +35,57 @@ function initializeSpoiler(api) {
     },
   });
 
-  if (Tag) {
-    Tag.prototype.decorate = function (text) {
-      const attr = this.element.attributes;
-      if (attr.class === "spoiled") {
-        this.prefix = "[spoiler]";
-        this.suffix = "[/spoiler]";
+  Tag.prototype.decorate = function (text) {
+    const { attributes } = this.element;
+    if (attributes.class === "spoiled") {
+      this.prefix = "[spoiler]";
+      this.suffix = "[/spoiler]";
+    }
+
+    if (this.prefix || this.suffix) {
+      text = [this.prefix, text, this.suffix].join("");
+    }
+
+    if (this.inline) {
+      const { prev, next } = this.element;
+
+      if (prev && prev.name !== "#text") {
+        text = " " + text;
       }
 
-      if (this.prefix || this.suffix) {
-        text = [this.prefix, text, this.suffix].join("");
+      if (next && next.name !== "#text") {
+        text = text + " ";
+      }
+    }
+
+    return text;
+  };
+
+  Tag.block = function (name, prefix, suffix) {
+    return class extends Tag.named(name) {
+      constructor() {
+        super(prefix, suffix);
+        this.gap = "\n\n";
       }
 
-      if (this.inline) {
-        text = " " + text + " ";
-      }
+      decorate(text) {
+        const { attributes, parent } = this.element;
 
-      return text;
-    };
-
-    Tag.block = function (name, prefix, suffix) {
-      return class extends Tag {
-        constructor() {
-          super(name, prefix, suffix);
-          this.gap = "\n\n";
+        if (name === "p" && parent?.name === "li") {
+          // fix for google docs
+          this.gap = "";
         }
 
-        decorate(text) {
-          const attr = this.element.attributes;
-          const parent = this.element.parent;
-
-          if (this.name === "p" && parent && parent.name === "li") {
-            // fix for google docs
-            this.gap = "";
-          }
-
-          if (this.name === "div" && attr.class === "spoiled") {
-            this.prefix = "[spoiler]";
-            this.suffix = "[/spoiler]";
-            text = text.trim();
-          }
-
-          return `${this.gap}${this.prefix}${text}${this.suffix}${this.gap}`;
+        if (name === "div" && attributes.class === "spoiled") {
+          this.prefix = "[spoiler]";
+          this.suffix = "[/spoiler]";
+          text = text.trim();
         }
-      };
+
+        return `${this.gap}${this.prefix}${text}${this.suffix}${this.gap}`;
+      }
     };
-  }
+  };
 }
 
 export default {
