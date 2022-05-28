@@ -11,7 +11,7 @@ function spoil(element) {
   });
 }
 
-function initializeSpoiler(api) {
+export function initializeSpoiler(api) {
   api.decorateCookedElement(spoil, { id: "spoiler-alert" });
 
   api.addToolbarPopupMenuOptionsCallback(() => {
@@ -84,7 +84,7 @@ function initializeSpoiler(api) {
 }
 
 export default {
-  name: "apply-spoilers",
+  name: "spoiler-alert",
 
   initialize(container) {
     const siteSettings = container.lookup("site-settings:main");
