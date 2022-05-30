@@ -1,7 +1,10 @@
 import { withPluginApi } from "discourse/lib/plugin-api";
-import { Tag } from "discourse/lib/to-markdown";
 import ComposerController from "discourse/controllers/composer";
 import applySpoiler from "discourse/plugins/discourse-spoiler-alert/lib/apply-spoiler";
+import {
+  addBlockDecorateCallback,
+  addTagDecorateCallback,
+} from "discourse/lib/to-markdown";
 
 function spoil(element) {
   element.querySelectorAll(".spoiler").forEach((spoiler) => {
@@ -35,52 +38,22 @@ export function initializeSpoiler(api) {
     },
   });
 
-  if (Tag) {
-    Tag.prototype.decorate = function (text) {
-      const attr = this.element.attributes;
-      if (attr.class === "spoiled") {
-        this.prefix = "[spoiler]";
-        this.suffix = "[/spoiler]";
-      }
+  addTagDecorateCallback(function () {
+    if (this.element.attributes.class === "spoiled") {
+      this.prefix = "[spoiler]";
+      this.suffix = "[/spoiler]";
+    }
+  });
 
-      if (this.prefix || this.suffix) {
-        text = [this.prefix, text, this.suffix].join("");
-      }
+  addBlockDecorateCallback(function (text) {
+    const { name, attributes } = this.element;
 
-      if (this.inline) {
-        text = " " + text + " ";
-      }
-
-      return text;
-    };
-
-    Tag.block = function (name, prefix, suffix) {
-      return class extends Tag {
-        constructor() {
-          super(name, prefix, suffix);
-          this.gap = "\n\n";
-        }
-
-        decorate(text) {
-          const attr = this.element.attributes;
-          const parent = this.element.parent;
-
-          if (this.name === "p" && parent && parent.name === "li") {
-            // fix for google docs
-            this.gap = "";
-          }
-
-          if (this.name === "div" && attr.class === "spoiled") {
-            this.prefix = "[spoiler]";
-            this.suffix = "[/spoiler]";
-            text = text.trim();
-          }
-
-          return `${this.gap}${this.prefix}${text}${this.suffix}${this.gap}`;
-        }
-      };
-    };
-  }
+    if (name === "div" && attributes.class === "spoiled") {
+      this.prefix = "[spoiler]";
+      this.suffix = "[/spoiler]";
+      return text.trim();
+    }
+  });
 }
 
 export default {
@@ -89,7 +62,7 @@ export default {
   initialize(container) {
     const siteSettings = container.lookup("site-settings:main");
     if (siteSettings.spoiler_enabled) {
-      withPluginApi("0.5", initializeSpoiler);
+      withPluginApi("1.3.0", initializeSpoiler);
     }
   },
 };
