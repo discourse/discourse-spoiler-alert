@@ -21,7 +21,7 @@ after_initialize do
     end
   end
 
-  # Remove spoilers from topic exerpts
+  # Remove spoilers from topic excerpts
   on(:reduce_excerpt) do |doc, post|
     doc.css(".spoiler").remove
   end
