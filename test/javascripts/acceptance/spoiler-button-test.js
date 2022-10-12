@@ -24,6 +24,9 @@ acceptance("Spoiler Button", function (needs) {
     assert.ok(exists("#create-topic"), "the create button is visible");
 
     await click("#create-topic");
+    const categoryChooser = selectKit(".category-chooser");
+    await categoryChooser.expand();
+    await categoryChooser.selectRowByValue(2);
     await popUpMenu.expand();
     await popUpMenu.selectRowByValue("insertSpoiler");
 
