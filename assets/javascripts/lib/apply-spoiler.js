@@ -1,3 +1,5 @@
+import I18n from "I18n";
+
 const INTERACTIVE_SELECTOR = [
   "a",
   "area",
