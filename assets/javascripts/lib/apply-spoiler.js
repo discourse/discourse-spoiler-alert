@@ -23,18 +23,53 @@ function isInteractive(event) {
   return event.defaultPrevented || event.target.closest(INTERACTIVE_SELECTOR);
 }
 
-export default function applySpoiler(element) {
-  element.setAttribute("data-spoiler-state", "blurred");
+function _setSpoilerHidden(element) {
+  const spoilerHiddenAttributes = {
+    role: "button",
+    tabindex: "0",
+    "data-spoiler-state": "blurred",
+    "aria-expanded": false,
+    "aria-label": I18n.t("spoiler.label.show"),
+  };
+
+  Object.entries(spoilerHiddenAttributes).forEach(([key, value]) => {
+    element.setAttribute(key, value);
+  });
   element.classList.add("spoiler-blurred");
+}
+
+function _setSpoilerVisible(element) {
+  const spoilerVisibleAttributes = {
+    "data-spoiler-state": "revealed",
+    "aria-expanded": true,
+    "aria-label": I18n.t("spoiler.label.hide"),
+  };
+
+  Object.entries(spoilerVisibleAttributes).forEach(([key, value]) => {
+    element.setAttribute(key, value);
+  });
+  element.classList.remove("spoiler-blurred");
+}
+
+function toggleSpoiler(event, element) {
+  if (element.getAttribute("data-spoiler-state") === "blurred") {
+    _setSpoilerVisible(element);
+    event.preventDefault();
+  } else if (!isInteractive(event)) {
+    _setSpoilerHidden(element);
+  }
+}
+
+export default function applySpoiler(element) {
+  _setSpoilerHidden(element);
 
   element.addEventListener("click", (event) => {
-    if (element.getAttribute("data-spoiler-state") === "blurred") {
-      element.setAttribute("data-spoiler-state", "revealed");
-      element.classList.remove("spoiler-blurred");
-      event.preventDefault();
-    } else if (!isInteractive(event)) {
-      element.setAttribute("data-spoiler-state", "blurred");
-      element.classList.add("spoiler-blurred");
+    toggleSpoiler(event, element);
+  });
+
+  element.addEventListener("keydown", (event) => {
+    if (event.key === "Enter") {
+      toggleSpoiler(event, element);
     }
   });
 }

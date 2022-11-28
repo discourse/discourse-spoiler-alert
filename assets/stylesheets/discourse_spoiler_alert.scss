@@ -14,7 +14,10 @@
 .spoiler-blurred {
   @include unselectable;
   cursor: pointer;
-  filter: blur(0.5em);
+
+  > * {
+    filter: blur(0.5em);
+  }
 
   a,
   area,
