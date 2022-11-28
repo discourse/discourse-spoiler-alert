@@ -34,10 +34,16 @@ function _setSpoilerHidden(element) {
     "aria-label": I18n.t("spoiler.label.show"),
   };
 
+  // Set default attributes & classes on spoiler
   Object.entries(spoilerHiddenAttributes).forEach(([key, value]) => {
     element.setAttribute(key, value);
   });
   element.classList.add("spoiler-blurred");
+
+  // Set aria-hidden for all children of the spoiler
+  Array.from(element.children).forEach((e) => {
+    e.setAttribute("aria-hidden", true);
+  });
 }
 
 function _setSpoilerVisible(element) {
@@ -47,10 +53,16 @@ function _setSpoilerVisible(element) {
     "aria-label": I18n.t("spoiler.label.hide"),
   };
 
+  // Set attributes & classes for when spoiler is visible
   Object.entries(spoilerVisibleAttributes).forEach(([key, value]) => {
     element.setAttribute(key, value);
   });
   element.classList.remove("spoiler-blurred");
+
+  // Remove aria-hidden for all children of the spoiler when visible
+  Array.from(element.children).forEach((e) => {
+    e.removeAttribute("aria-hidden");
+  });
 }
 
 function toggleSpoiler(event, element) {
