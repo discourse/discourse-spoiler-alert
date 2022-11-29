@@ -5,3 +5,8 @@
 # https://translate.discourse.org/
 
 nl:
+  js:
+    spoiler:
+      title: Spoiler vervagen
+    composer:
+      spoiler_text: "Deze tekst wordt vervaagd"
