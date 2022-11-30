@@ -42,7 +42,8 @@
   }
 
   .discourse-no-touch & {
-    &:hover {
+    &:hover,
+    &:focus {
       filter: blur(0.18em);
 
       img {
