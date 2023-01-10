@@ -5,3 +5,11 @@
 # https://translate.discourse.org/
 
 tr_TR:
+  js:
+    spoiler:
+      title: Spoiler'ı Bulanıklaştır
+      label:
+        show: "Gizli içeriği göster"
+        hide: "İçeriği gizle"
+    composer:
+      spoiler_text: "Bu metin bulanıklaştırılacak"
