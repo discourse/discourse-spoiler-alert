@@ -51,6 +51,7 @@ function _setSpoilerVisible(element) {
     "data-spoiler-state": "revealed",
     "aria-expanded": true,
     "aria-label": I18n.t("spoiler.label.hide"),
+    "aria-live": "polite",
   };
 
   // Set attributes & classes for when spoiler is visible
