@@ -69,7 +69,7 @@ function _setSpoilerVisible(element) {
   };
 
   // Set attributes & classes for when spoiler is visible
-  setAttributes(element, spoilerHiddenAttributes);
+  setAttributes(element, spoilerVisibleAttributes);
   element.classList.remove("spoiler-blurred");
 
   // Remove aria-hidden for all children of the spoiler when visible
