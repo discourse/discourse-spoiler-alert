@@ -50,11 +50,12 @@ function _setSpoilerVisible(element) {
   const spoilerVisibleAttributes = {
     "data-spoiler-state": "revealed",
     "aria-expanded": true,
-    "aria-label": I18n.t("spoiler.label.hide"),
+    //"aria-label": I18n.t("spoiler.label.hide"),
     "aria-live": "polite",
   };
 
   // Set attributes & classes for when spoiler is visible
+  element.removeAttribute("aria-label");
   Object.entries(spoilerVisibleAttributes).forEach(([key, value]) => {
     element.setAttribute(key, value);
   });
