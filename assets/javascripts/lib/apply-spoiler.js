@@ -25,8 +25,8 @@ function isInteractive(event) {
   return event.defaultPrevented || event.target.closest(INTERACTIVE_SELECTOR);
 }
 
-function no_text_selected(): boolean {
-  return (window.getSelection() + '') === ''
+function no_text_selected() {
+  return (window.getSelection() + '') === '';
 }
 
 function setAttributes(element, attributes) {
