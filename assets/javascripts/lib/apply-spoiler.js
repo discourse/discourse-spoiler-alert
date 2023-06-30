@@ -47,6 +47,7 @@ function _setSpoilerHidden(element) {
     "data-spoiler-state": "blurred",
     "aria-expanded": false,
     "aria-label": I18n.t("spoiler.label.show"),
+    "aria-live": "polite",
   };
 
   // Set default attributes & classes on spoiler
@@ -64,7 +65,6 @@ function _setSpoilerVisible(element) {
     "data-spoiler-state": "revealed",
     "aria-expanded": true,
     "aria-label": null,
-    "aria-live": "polite",
     role: null,
   };
 
