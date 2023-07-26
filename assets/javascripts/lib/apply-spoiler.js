@@ -25,7 +25,7 @@ function isInteractive(event) {
   return event.defaultPrevented || event.target.closest(INTERACTIVE_SELECTOR);
 }
 
-function no_text_selected() {
+function noTextSelected() {
   return (window.getSelection() + '') === '';
 }
 
@@ -82,7 +82,7 @@ function toggleSpoiler(event, element) {
   if (element.getAttribute("data-spoiler-state") === "blurred") {
     _setSpoilerVisible(element);
     event.preventDefault();
-  } else if (!isInteractive(event) && no_text_selected()) {
+  } else if (!isInteractive(event) && noTextSelected()) {
     _setSpoilerHidden(element);
   }
 }
