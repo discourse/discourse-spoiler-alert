@@ -25,6 +25,20 @@ function isInteractive(event) {
   return event.defaultPrevented || event.target.closest(INTERACTIVE_SELECTOR);
 }
 
+function noTextSelected() {
+  return window.getSelection() + "" === "";
+}
+
+function setAttributes(element, attributes) {
+  Object.entries(attributes).forEach(([key, value]) => {
+    if (value === null) {
+      element.removeAttribute(key);
+    } else {
+      element.setAttribute(key, value);
+    }
+  });
+}
+
 function _setSpoilerHidden(element) {
   const spoilerHiddenAttributes = {
     role: "button",
@@ -32,12 +46,11 @@ function _setSpoilerHidden(element) {
     "data-spoiler-state": "blurred",
     "aria-expanded": false,
     "aria-label": I18n.t("spoiler.label.show"),
+    "aria-live": "polite",
   };
 
   // Set default attributes & classes on spoiler
-  Object.entries(spoilerHiddenAttributes).forEach(([key, value]) => {
-    element.setAttribute(key, value);
-  });
+  setAttributes(element, spoilerHiddenAttributes);
   element.classList.add("spoiler-blurred");
 
   // Set aria-hidden for all children of the spoiler
@@ -50,14 +63,12 @@ function _setSpoilerVisible(element) {
   const spoilerVisibleAttributes = {
     "data-spoiler-state": "revealed",
     "aria-expanded": true,
-    "aria-label": I18n.t("spoiler.label.hide"),
-    "aria-live": "polite",
+    "aria-label": null,
+    role: null,
   };
 
   // Set attributes & classes for when spoiler is visible
-  Object.entries(spoilerVisibleAttributes).forEach(([key, value]) => {
-    element.setAttribute(key, value);
-  });
+  setAttributes(element, spoilerVisibleAttributes);
   element.classList.remove("spoiler-blurred");
 
   // Remove aria-hidden for all children of the spoiler when visible
@@ -70,7 +81,7 @@ function toggleSpoiler(event, element) {
   if (element.getAttribute("data-spoiler-state") === "blurred") {
     _setSpoilerVisible(element);
     event.preventDefault();
-  } else if (!isInteractive(event)) {
+  } else if (!isInteractive(event) && noTextSelected()) {
     _setSpoilerHidden(element);
   }
 }

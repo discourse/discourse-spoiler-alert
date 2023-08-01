@@ -4,6 +4,5 @@ en:
       title: Blur Spoiler
       label:
         show: "Show hidden content"
-        hide: "Hide content"
     composer:
       spoiler_text: "This text will be blurred"
