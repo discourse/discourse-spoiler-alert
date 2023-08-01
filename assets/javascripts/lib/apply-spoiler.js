@@ -26,15 +26,14 @@ function isInteractive(event) {
 }
 
 function noTextSelected() {
-  return (window.getSelection() + '') === '';
+  return window.getSelection() + "" === "";
 }
 
 function setAttributes(element, attributes) {
   Object.entries(attributes).forEach(([key, value]) => {
     if (value === null) {
       element.removeAttribute(key);
-    }
-    else {
+    } else {
       element.setAttribute(key, value);
     }
   });
