@@ -10,6 +10,5 @@ he:
       title: טשטוש קלקלן
       label:
         show: "הצגת תוכן מוסתר"
-        hide: "הסתרת תוכן"
     composer:
       spoiler_text: "טקסט זה יטושטש"
