@@ -8,5 +8,7 @@ fr:
   js:
     spoiler:
       title: Flouter le texte
+      label:
+        show: "Afficher le contenu masqué"
     composer:
       spoiler_text: "Ce texte sera flouté"

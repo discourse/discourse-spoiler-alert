@@ -8,5 +8,7 @@ de:
   js:
     spoiler:
       title: Spoiler unkenntlich machen
+      label:
+        show: "Zeige ausgeblendeten Inhalt"
     composer:
       spoiler_text: "Dieser Text wird unkenntlich gemacht"

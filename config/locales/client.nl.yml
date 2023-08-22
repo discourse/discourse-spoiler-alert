@@ -8,5 +8,7 @@ nl:
   js:
     spoiler:
       title: Spoiler vervagen
+      label:
+        show: "Verborgen inhoud weergeven"
     composer:
       spoiler_text: "Deze tekst wordt vervaagd"

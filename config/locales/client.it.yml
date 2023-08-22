@@ -8,5 +8,7 @@ it:
   js:
     spoiler:
       title: Rendi illeggibile spoiler
+      label:
+        show: "Mostra contenuti nascosti"
     composer:
       spoiler_text: "Questo testo verrà reso illeggibile"
