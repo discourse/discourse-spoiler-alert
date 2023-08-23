@@ -8,5 +8,7 @@ pt_BR:
   js:
     spoiler:
       title: Dificuldador de desfoque
+      label:
+        show: "Exibir conteúdo oculto"
     composer:
       spoiler_text: "Este texto será desfocado"

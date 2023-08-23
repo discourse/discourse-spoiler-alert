@@ -8,5 +8,7 @@ es:
   js:
     spoiler:
       title: Spoiler Borroso
+      label:
+        show: "Mostrar contenido oculto"
     composer:
       spoiler_text: "Este texto será borroso"
