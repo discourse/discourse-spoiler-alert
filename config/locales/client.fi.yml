@@ -8,5 +8,7 @@ fi:
   js:
     spoiler:
       title: Spoileri
+      label:
+        show: "Näytä piilotettu sisältö"
     composer:
       spoiler_text: "Tämä teksti sumennetaan"
