@@ -1,7 +1,8 @@
 # frozen_string_literal: true
 
 # name: discourse-spoiler-alert
-# about: Uses the Spoiler Alert plugin to blur text when spoiling it.
+# about: Provides the ability to hide content marked with a [spoiler] tag in posts.
+# meta_topic_id: 12650
 # version: 1.1.0
 # authors: Robin Ward, Regis Hanol
 # url: https://github.com/discourse/discourse-spoiler-alert
