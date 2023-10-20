@@ -1,10 +1,9 @@
 import { withPluginApi } from "discourse/lib/plugin-api";
-import ComposerController from "discourse/controllers/composer";
-import applySpoiler from "discourse/plugins/discourse-spoiler-alert/lib/apply-spoiler";
 import {
   addBlockDecorateCallback,
   addTagDecorateCallback,
 } from "discourse/lib/to-markdown";
+import applySpoiler from "discourse/plugins/discourse-spoiler-alert/lib/apply-spoiler";
 
 function spoil(element) {
   element.querySelectorAll(".spoiler").forEach((spoiler) => {
@@ -17,24 +16,14 @@ function spoil(element) {
 export function initializeSpoiler(api) {
   api.decorateCookedElement(spoil, { id: "spoiler-alert" });
 
-  api.addToolbarPopupMenuOptionsCallback(() => {
-    return {
-      action: "insertSpoiler",
-      icon: "magic",
-      label: "spoiler.title",
-    };
-  });
-
-  ComposerController.reopen({
-    actions: {
-      insertSpoiler() {
-        this.get("toolbarEvent").applySurround(
-          "[spoiler]",
-          "[/spoiler]",
-          "spoiler_text",
-          { multiline: false, useBlockMode: true }
-        );
-      },
+  api.addComposerToolbarPopupMenuOption({
+    icon: "magic",
+    label: "spoiler.title",
+    action: (toolbarEvent) => {
+      toolbarEvent.applySurround("[spoiler]", "[/spoiler]", "spoiler_text", {
+        multiline: false,
+        useBlockMode: true,
+      });
     },
   });
 
@@ -61,8 +50,9 @@ export default {
 
   initialize(container) {
     const siteSettings = container.lookup("site-settings:main");
+
     if (siteSettings.spoiler_enabled) {
-      withPluginApi("1.3.0", initializeSpoiler);
+      withPluginApi("1.15.0", initializeSpoiler);
     }
   },
 };
