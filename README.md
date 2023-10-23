@@ -15,27 +15,4 @@ I watched the murder mystery on TV last night. [spoiler]The butler did it[/spoil
 
 ## Installation
 
-- Add the plugin's repo url to your container's `app.yml` file
-
-```yml
-hooks:
-  after_code:
-    - exec:
-        cd: $home/plugins
-        cmd:
-          - mkdir -p plugins
-          - git clone https://github.com/discourse/docker_manager.git
-          - git clone https://github.com/discourse/discourse-spoiler-alert.git
-```
-
-- Rebuild the container
-
-```
-cd /var/discourse
-git pull
-./launcher rebuild app
-```
-
-## License
-
-MIT
+This plugin has now been bundled into Discourse core.
